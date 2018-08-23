@@ -1,0 +1,18 @@
+cache:
+  directories:
+    - .cache
+
+jobs:
+  include:
+    - stage: Prepare cache
+      env: V=1
+      script: mkdir -p .cache && > .cache/$V
+    - env: V=2
+      script: mkdir -p .cache && > .cache/$V
+    - stage: Use cache
+      env: V=1
+      script: ls .cache
+    - env: V=2
+      script: ls .cache
+
+language: generic
